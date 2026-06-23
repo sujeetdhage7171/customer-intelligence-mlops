@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-ml
+  namespace: mlops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-ml
+  template:
+    metadata:
+      labels:
+        app: fastapi-ml
+    spec:
+      containers:
+        - name: fastapi-ml
+          image: fastapi-ml-serving:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
